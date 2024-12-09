@@ -84,7 +84,7 @@ export enum PopupType {
 const EDGE_OFFSET = 20;
 const EXPAND_THRESHOLD = 20;
 const MOBILE_BREAKPOINT = 476;
-const WIDGET_ID_PREFIX = "tiplink-widget-draggable";
+const WIDGET_ID_PREFIX = "hyperlink-widget-draggable";
 const IFRAME_ID_PREFIX = "hyperLinkIframe";
 const WIDGET_DIMENSION = {
   HEIGHT: {
@@ -243,10 +243,10 @@ function showExpandedWalletWidget(
   widgetElement: HTMLDivElement,
   theme?: string
 ) {
-  const widgetLogo = document?.getElementById("tiplink-widget-logo");
-  const widgetLabel = document?.getElementById("tiplink-widget-text");
-  const widgetChevron = document?.getElementById("tiplink-widget-chevron");
-  const widgetNotif = document?.getElementById("tiplink-widget-notif");
+  const widgetLogo = document?.getElementById("hyperlink-widget-logo");
+  const widgetLabel = document?.getElementById("hyperlink-widget-text");
+  const widgetChevron = document?.getElementById("hyperlink-widget-chevron");
+  const widgetNotif = document?.getElementById("hyperlink-widget-notif");
   if (widgetLogo) {
     widgetLogo.style.display = "block";
   }
@@ -258,7 +258,7 @@ function showExpandedWalletWidget(
   }
   if (
     widgetNotif &&
-    widgetNotif.classList.contains("tiplinkWidget_notif_show")
+    widgetNotif.classList.contains("hyperlinkWidget_notif_show")
   ) {
     widgetNotif.style.removeProperty("left");
     widgetNotif.style.setProperty("right", "-4px");
@@ -275,10 +275,10 @@ function showCollapsedWalletWidget(
   // don't collapse on desktop dimension right-side
   const vw = right();
   if (vw > 476 && !isOnLeftSide) return;
-  const widgetLogo = document?.getElementById("tiplink-widget-logo");
-  const widgetLabel = document?.getElementById("tiplink-widget-text");
-  const widgetChevron = document?.getElementById("tiplink-widget-chevron");
-  const widgetNotif = document?.getElementById("tiplink-widget-notif");
+  const widgetLogo = document?.getElementById("hyperlink-widget-logo");
+  const widgetLabel = document?.getElementById("hyperlink-widget-text");
+  const widgetChevron = document?.getElementById("hyperlink-widget-chevron");
+  const widgetNotif = document?.getElementById("hyperlink-widget-notif");
   if (widgetLogo) {
     widgetLogo.style.display = "none";
   }
@@ -293,7 +293,7 @@ function showCollapsedWalletWidget(
   }
   if (
     widgetNotif &&
-    widgetNotif.classList.contains("tiplinkWidget_notif_show") &&
+    widgetNotif.classList.contains("hyperlinkWidget_notif_show") &&
     !isOnLeftSide
   ) {
     widgetNotif.style.removeProperty("right");
@@ -351,7 +351,7 @@ function setupWalletWidgetClassNames(
       break;
     case "system":
     default:
-      classNames.push("tiplinkWidget_system");
+      classNames.push("hyperlinkWidget_system");
   }
   return classNames.join(" ");
 }
@@ -841,13 +841,13 @@ function setupWalletWidget({
   console.log("widgetClassNames", widgetClassNames);
   const htmlString = `
   <div id="${widgetElementId}" style="transform: translate(20px, calc(100svh - ${initialYOffset}px)); pointer-events: auto; touch-action: none; -ms-touch-action: none; animation: enter 0.6s ease-out 1; border: 1px solid rgba(11, 45, 69, 0.04); background: rgba(255, 255, 255, 0.70); box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10); color: #17303E; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: background ease-out 0.15s, color ease-out 0.15s; width: 101px; height: 72px; border-radius: 12px; text-align: center; position: fixed; cursor: grab; z-index: 2147483645; top: 0px; left: 0px; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); font-family: var(--font-inter), sans-serif; font-size: 12px; font-weight: 600; line-height: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;" data-x="20" data-y="${initialWidgetYPosition}" data-x-prev="20" data-vh="${vh}">
-<div class="tiplinkWidget_pulse"></div>
-<div id="tiplink-widget-notif" style="user-selection: none; height: 0px; width: 0px; overflow: hidden;">1</div>
-<div id="tiplink-widget-logo" style="width: auto; height: 32px; margin-bottom: 4px;">
+<div class="hyperlinkWidget_pulse"></div>
+<div id="hyperlink-widget-notif" style="user-selection: none; height: 0px; width: 0px; overflow: hidden;">1</div>
+<div id="hyperlink-widget-logo" style="width: auto; height: 32px; margin-bottom: 4px;">
 ${widgetIconSvg}
 </div>
-<p id="tiplink-widget-text">View Wallet</p>
-<div id="tiplink-widget-chevron" style="display: none;">
+<p id="hyperlink-widget-text">View Wallet</p>
+<div id="hyperlink-widget-chevron" style="display: none;">
 <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
  <path fill-rule="evenodd" clip-rule="evenodd" d="M0.910746 0.410826C1.23618 0.0853888 1.76382 0.0853888 2.08926 0.410826L7.08926 5.41083C7.41469 5.73626 7.41469 6.2639 7.08926 6.58934L2.08926 11.5893C1.76382 11.9148 1.23618 11.9148 0.910746 11.5893C0.585309 11.2639 0.585309 10.7363 0.910746 10.4108L5.32149 6.00008L0.910746 1.58934C0.585309 1.2639 0.585309 0.736263 0.910746 0.410826Z" fill="currentColor" />
 </svg>          
@@ -1146,14 +1146,14 @@ export class HyperLinkEmbed extends EventEmitter<HyperLinkEmbedEvents> {
 
   private showWidgetNotificationUi() {
     if (!document) return;
-    const notif = document.getElementById("tiplink-widget-notif");
-    notif?.classList.add("tiplinkWidget_notif_show");
+    const notif = document.getElementById("hyperlink-widget-notif");
+    notif?.classList.add("hyperlinkWidget_notif_show");
   }
 
   private hideWidgetNotificationUi() {
     if (!document) return;
-    const notif = document.getElementById("tiplink-widget-notif");
-    notif?.classList.remove("tiplinkWidget_notif_show");
+    const notif = document.getElementById("hyperlink-widget-notif");
+    notif?.classList.remove("hyperlinkWidget_notif_show");
   }
 
   private getGreenCheckmarkLogoUrl(): string {
@@ -1165,7 +1165,7 @@ export class HyperLinkEmbed extends EventEmitter<HyperLinkEmbedEvents> {
 
   private getHyperLinkLogoUrl(): string {
     const logoUrl = new URL(
-      "adapter-tiplink-logo.svg",
+      "adapter-hyperlink-logo.svg",
       getHyperLinkUrl(this.buildEnv)
     );
     return logoUrl.toString();
@@ -1173,7 +1173,7 @@ export class HyperLinkEmbed extends EventEmitter<HyperLinkEmbedEvents> {
 
   private getWhiteHyperLinkLogoUrl(): string {
     const logoUrl = new URL(
-      "brand-assets/logo/logomark/svg/tiplink_logomark_white.svg",
+      "brand-assets/logo/logomark/svg/hyperlink_logomark_white.svg",
       getHyperLinkUrl(this.buildEnv)
     );
     return logoUrl.toString();
@@ -1181,7 +1181,7 @@ export class HyperLinkEmbed extends EventEmitter<HyperLinkEmbedEvents> {
 
   private getDarkHyperLinkLogoUrl(): string {
     const logoUrl = new URL(
-      "tiplink/tiplink-logo-dark.svg",
+      "hyperlink/hyperlink-logo-dark.svg",
       getHyperLinkUrl(this.buildEnv)
     );
     return logoUrl.toString();
@@ -1232,7 +1232,7 @@ export class HyperLinkEmbed extends EventEmitter<HyperLinkEmbedEvents> {
         return {
           title: "Application not allowlisted",
           description:
-            "Your application has not been allowlisted for the HyperLink Wallet Adapter. Please reach out to contact@tiplink.io for support",
+            "Your application has not been allowlisted for the HyperLink Wallet Adapter. Please reach out to contact@hyperlink.io for support",
         };
     }
   };
@@ -1464,7 +1464,7 @@ export class HyperLinkEmbed extends EventEmitter<HyperLinkEmbedEvents> {
     if (directConnect && !promptHyperLinkAutoConnectFromRedirect) {
       windowParams = this.windowCommunicator.openPopup(
         `/embedded_adapter_login?ref=${window.location.origin}${
-          //Note this is how this how tiplink is connecting
+          //Note this is how this how hyperlink is connecting
           isThemed ? `&theme=${theme}` : ""
         }`
       );
@@ -1789,24 +1789,24 @@ export class HyperLinkEmbed extends EventEmitter<HyperLinkEmbedEvents> {
                           this.windowCommunicator.singlePostToWindow(
                             this.hyperLinkIframe.contentWindow,
                             {
-                              type: "tiplink_autoconnect_from_redirect",
+                              type: "hyperlink_autoconnect_from_redirect",
                               title: this.title,
                             }
                           );
                         }
                         // console.log(
-                        //   "displaying iframe for tiplink autoconnect from redirect after",
+                        //   "displaying iframe for hyperlink autoconnect from redirect after",
                         //   Date.now() - start
                         // );
                         this.showIframe();
                       }
                     },
                   },
-                  ready_for_tiplink_autoconnect: {
+                  ready_for_hyperlink_autoconnect: {
                     type: CallbackType.DEFAULT,
                     cb: async (data: any) => {
                       // console.log(
-                      //   "received ready_for_tiplink_autoconnect",
+                      //   "received ready_for_hyperlink_autoconnect",
                       //   data
                       // );
                       if (this.hyperLinkIframe?.contentWindow) {
@@ -2511,14 +2511,14 @@ export class HyperLinkEmbed extends EventEmitter<HyperLinkEmbedEvents> {
     }
     console.error(
       window.location.origin,
-      "not allowlisted – please contact the HyperLink team at contact@tiplink.io to be added."
+      "not allowlisted – please contact the HyperLink team at contact@hyperlink.io to be added."
     );
     showDialog(
       this.buildEnv,
       `<p>${window.location.origin} does not have access yet ` +
         "to use the HyperLink Wallet Adapter. Please reach out to the " +
-        'HyperLink team at <a style="text-decoration: underline;" href="mailto:contact@tiplink.io" target="_blank"> ' +
-        "contact@tiplink.io</a> or reach out via our " +
+        'HyperLink team at <a style="text-decoration: underline;" href="mailto:contact@hyperlink.io" target="_blank"> ' +
+        "contact@hyperlink.io</a> or reach out via our " +
         '<a style="text-decoration: underline;" href="https://discord.com/invite/4bXYT7dxR3" target="_blank" >' +
         "discord</a>.</p>"
     );
