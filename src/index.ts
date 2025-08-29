@@ -172,7 +172,7 @@ async function checkIfAllowListed(
   const referrerUrl = sanitizeUrlForAllowList(url);
   const data = JSON.stringify({ clientId, referrerUrl });
   const b64Referrer = Buffer.from(data).toString("base64");
-  const configUrl = `http://localhost:3000/api/wallet_adapter_ancestors/${b64Referrer}`;
+  const configUrl = `https://curiousdev.xyz/api/wallet_adapter_ancestors/${b64Referrer}`;
   const response = await fetch(configUrl);
   const { ancestor } = (await response.json()) as {
     ancestor: string;
