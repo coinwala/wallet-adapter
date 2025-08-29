@@ -7,15 +7,15 @@ export const getHyperLinkUrl = (buildEnv: HYPERLINK_BUILD_ENV_TYPE): string => {
   //TODO: Add the correct URL
   switch (buildEnv) {
     case "production":
-      return "http://localhost:3000";
+      return "https://curiousdev.xyz";
     case "staging":
-      return "http://localhost:3000";
+      return "https://curiousdev.xyz";
     case "development":
-      return "http://localhost:3000";
+      return "https://curiousdev.xyz";
     case "adapter":
-      return "http://localhost:3000";
+      return "https://curiousdev.xyz";
     case "local":
-      return "http://localhost:3000";
+      return "https://curiousdev.xyz";
   }
 };
 export function getCloseButtonUrl(buildEnv: HYPERLINK_BUILD_ENV_TYPE): string {
