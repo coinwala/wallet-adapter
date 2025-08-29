@@ -64,7 +64,7 @@ export const GoogleViaHyperLinkWalletName =
   "Google via HyperlinkLink" as WalletName<"Google via HyperLink">;
 
 export type HyperLinkWalletAdapterTheme = "system" | "light" | "dark";
-export const NPM_VERSION = "2.1.21";
+export const NPM_VERSION = "2.1.23";
 export type CustomSolanaSignInInput =
   | SolanaSignInInput
   | (() => Promise<SolanaSignInInput>);
